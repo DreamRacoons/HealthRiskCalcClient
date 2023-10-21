@@ -1,18 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles.css">
-  <title>Health Insurance Risk Calculator</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Risk Calculator</title>
+    <script src = "main.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+ 
 </head>
-
 <body>
-  <main>
-    <h1>Vanilla JavaScript App</h1>
-  </main>
-  <script src = "main.js"></script>
-</body>
-
+    <h1>Health Risk Calculator</h1>
+ 
+    <div id="patientForm">
+        <h2>Patient Information</h2>
+        <label for="age">Enter the person's age in years:</label>
+        <input type="number" id="age" required>
+        <br>
+ 
+        <label for="height">Enter the person's height in inches:</label>
+        <input type="number" id="height" required>
+        <br>
+ 
+        <label for="weight">Enter the person's weight in pounds:</label>
+        <input type="number" id="weight" required>
+        <br>
+ 
+        <label for="systolicBP">Enter the person's systolic blood pressure:</label>
+        <input type="number" id="systolicBP" required>
+        <br>
+ 
+        <label for="diastolicBP">Enter the person's diastolic blood pressure:</label>
+        <input type="number" id="diastolicBP" required>
+        <br>
+ 
+        <label for="diabetes">Does the person have a family history of Diabetes?</label>
+        <select id="diabetes">
+            <option value="n">No</option>
+            <option value="y">Yes</option>
+        </select>
+        <br>
+ 
+        <label for="cancer">Does the person have a family history of Cancer?</label>
+        <select id="cancer">
+            <option value="n">No</option>
+            <option value="y">Yes</option>
+        </select>
+        <br>
+ 
+        <label for="alzheimers">Does the person have a family history of Alzheimers?</label>
+        <select id="alzheimers">
+            <option value="n">No</option>
+            <option value="y">Yes</option>
+        </select>
+        <br>
+ 
+        <button onclick="calculateRisk()">Calculate Risk</button>
+    </div>
+ 
+    <div id="result" style="display: none;">
+        <h2>Risk scores</h2>
+        <p>Age: <span id="ageScore"></span></p>
+        <p>Body-Mass: <span id="bmiScore"></span> (index = <span id="bmiValue"></span>)</p>
+        <p>Blood Pressure: <span id="bpScore"></span></p>
+        <p>Family History: <span id="familyHistoryScore"></span></p>
+        <h2>Based on these scores, the person is <span id="riskLevel"></span>.</h2>
+    </div>
+   
+    <button onclick="addAnotherPatient()">Add Another Patient</button>
+  </body>
 </html>
