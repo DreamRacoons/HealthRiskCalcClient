@@ -27,24 +27,32 @@ function calculateRisk() {
     // Calculate risk scores
     if (age < 30) {
         ageScore = 0;
-    } else if (age >= 30 && age <= 45) {
+    } else if (age >= 30 && age < 45) {
         ageScore = 10;
-    } else {
+    } else if (age >= 45 && age < 60){
         ageScore = 20;
+    } else {
+        ageScore = 30
     }
  
     if (bmi < 24.9) {
         bmiScore = 0;
     } else if (bmi >= 24.9 && bmi <= 29.9) {
-        bmiScore = 10;
-    } else {
         bmiScore = 30;
+    } else {
+        bmiScore = 75;
     }
  
     if (systolicBP < 120 && diastolicBP < 80) {
         bpScore = 0;
-    } else {
+    } else if(systolicBP >= 120 && systolicBP < 130 && diastolicBP < 80) {
         bpScore = 15;
+    } else if(systolicBP >= 130 && systolicBP < 140 || diastolicBP >= 80 && diastolicBP < 90) {
+        bpScore = 30;
+    } else if(systolicBP >= 140 && systolicBP < 180 || diastolicBP >= 90 && diastolicBP < 120) {
+        bpScore = 75;
+    } else {
+        bpScore = 100;
     }
  
     if (diabetes === "y") {
@@ -62,12 +70,14 @@ function calculateRisk() {
  
     // Determine risk level
     let riskLevel = "";
-    if (totalScore === 0) {
+    if (totalScore <=20) {
         riskLevel = "low-risk";
-    } else if (totalScore <= 30) {
+    } else if (totalScore > 20 && totalScore <= 50) {
         riskLevel = "moderate-risk";
-    } else {
+    } else if (totalScore > 50 && totalScore <= 75){
         riskLevel = "high-risk";
+    } else {
+        riskLevel = "uninsurable"
     }
  
     // Display results
