@@ -16,7 +16,7 @@ function calculateRisk() {
     const alzheimers = document.getElementById("alzheimers").value;
  
     // Calculate BMI
-    const bmi = ((weight * 0.45359) / ((height * height) * 0.0254));
+    const bmi = ((weight / (height * height)) * 703);
  
     // Initialize risk scores
     let ageScore = 0;
@@ -35,9 +35,9 @@ function calculateRisk() {
         ageScore = 30
     }
  
-    if (bmi < 24.9) {
+    if (bmi <= 24.9) {
         bmiScore = 0;
-    } else if (bmi >= 24.9 && bmi <= 29.9) {
+    } else if (bmi >= 25 && bmi <= 29.9) {
         bmiScore = 30;
     } else {
         bmiScore = 75;
