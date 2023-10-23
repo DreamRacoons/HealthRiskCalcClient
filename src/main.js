@@ -1,10 +1,23 @@
 async function start(){
-    const response = await fetch("https://health-ins-risk-math.azurewebsites.net/")
+    const response = await fetch("https://health-ins-risk-math.azurewebsites.net/api/riskcalcmath")
     const data = await response.json()
+
+    showRisk(data.message)
+    
 }
  
 start()
- 
+
+function showRisk({totalScore, riskLevel, ageScore, bmiScore, bpScore, familyHistoryScore, bmi}){
+    document.getElementById("ageScore").textContent = ageScore;
+    document.getElementById("bmiScore").textContent = bmiScore;
+    document.getElementById("bmiValue").textContent = bmi.toFixed(2);
+    document.getElementById("bpScore").textContent = bpScore;
+    document.getElementById("familyHistoryScore").textContent = familyHistoryScore;
+    document.getElementById("riskLevel").textContent = riskLevel;
+    document.getElementById("result").style.display = "block";
+}
+
 function calculateRisk() {
     const age = parseFloat(document.getElementById("age").value);
     const height = parseFloat(document.getElementById("height").value);
@@ -89,7 +102,7 @@ function calculateRisk() {
     document.getElementById("riskLevel").textContent = riskLevel;
     document.getElementById("result").style.display = "block";
 }
- 
+
 function addAnotherPatient() {
     document.getElementById("patientForm").reset();
     document.getElementById("result").style.display = "none";
